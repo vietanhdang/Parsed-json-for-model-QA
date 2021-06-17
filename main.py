@@ -39,13 +39,13 @@ def convertPdf():
         pdfReader = PdfFileReader(pdfFile)
 
         # creating a page object
-        pageObj = pdfReader.getPage(0)
 
-        # extracting text from page
-        extractedText = pageObj.extractText()
-        textBox.delete(1.0, END)
-        textBox.insert(INSERT, extractedText)
-
+        for i in range(0, pdfReader.numPages):
+            pageObj = pdfReader.getPage(i)
+            # extracting text from page
+            extractedText = pageObj.extractText()
+            textBox.delete(1.0, END)
+            textBox.insert(INSERT, extractedText)
         # closing the pdf file object
         pdfFile.close()
     except FileNotFoundError:
@@ -204,3 +204,4 @@ saveFileButton.place(x=30, y=500)
 # ===================halt window=============================>>
 if __name__ == "__main__":
     root.mainloop()
+
